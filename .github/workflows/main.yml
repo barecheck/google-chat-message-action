@@ -1,0 +1,23 @@
+name: Code Duplications
+
+on: [pull_request]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: ""
+      - run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+      - name: Use Node.js 14.16.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.16.1
+
+      # Testing beta of code coverage checks
+      # This part can be removed or optimized once barecheck code coverage will be out of beta
+      # - name: Sends google chat notification message
+      #   id: notification-message
+      #   uses: ./

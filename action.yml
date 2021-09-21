@@ -1,0 +1,15 @@
+name: "Google chat notification"
+description: "GitHub Action that sends notification to google chat"
+branding:
+  icon: "check-circle"
+  color: "green"
+inputs:
+  app_name:
+    description: Your application name
+    required: true
+outputs:
+  percentage:
+    description: "Total Percentage duplication"
+runs:
+  using: "node12"
+  main: "dist/index.js"
