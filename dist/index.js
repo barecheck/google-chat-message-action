@@ -12490,6 +12490,7 @@ const getDescriptionWidget = (description) => {
     const { owner, repo } = github.context.repo;
     const repoUrl = `https://github.com/${owner}/${repo}`;
     const pullRequestLink = `${repoUrl}/pull/${number}`;
+    // TODO: clean up description
 
     return {
       content: description,
