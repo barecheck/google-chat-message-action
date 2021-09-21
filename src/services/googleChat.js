@@ -20,7 +20,7 @@ const textButton = (text, url) => ({
   }
 });
 
-const getMessageBody = (name, description, url, status) => {
+const getMessageBody = (name, description, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha } = github.context;
   const { number } = github.context.issue;
@@ -75,10 +75,10 @@ const getMessageBody = (name, description, url, status) => {
   return body;
 };
 
-const sendMessage = async (name, url, status) => {
-  const body = getMessageBody(name, url, status);
+const sendMessage = async (name, description, webhookUrl, status) => {
+  const body = getMessageBody(name, description, status);
 
-  const response = await axios.default.post(url, body);
+  const response = await axios.default.post(webhookUrl, body);
   if (response.status !== 200) {
     throw new Error(
       `Google Chat notification failed. response status=${response.status}`
