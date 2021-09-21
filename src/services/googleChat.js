@@ -20,7 +20,7 @@ const textButton = (text, url) => ({
   }
 });
 
-const getMessageBody = (name, url, status) => {
+const getMessageBody = (name, description, url, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha } = github.context;
   const { number } = github.context.issue;
@@ -28,7 +28,6 @@ const getMessageBody = (name, url, status) => {
   const eventPath =
     eventName === "pull_request" ? `/pull/${number}` : `/commit/${sha}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
-  const commitMessage = github.event.head_commit.message;
 
   const body = {
     cards: [
@@ -56,7 +55,7 @@ const getMessageBody = (name, url, status) => {
               {
                 keyValue: {
                   topLabel: "Description",
-                  content: commitMessage
+                  content: description
                 }
               }
             ]

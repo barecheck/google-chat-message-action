@@ -24,4 +24,5 @@ jobs:
         with:
           app_name: barecheck
           status: success
+          message: ${{ github.event.head_commit.message }}
           webhook_url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}

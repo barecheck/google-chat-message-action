@@ -24,6 +24,12 @@ const getAppName = () => {
   return appNameInput;
 };
 
+const getDescription = () => {
+  const description = core.getInput("description");
+
+  return description;
+};
+
 const getWebhookUrl = () => {
   const webhookUrl = core.getInput("webhook_url");
 
@@ -33,5 +39,6 @@ const getWebhookUrl = () => {
 module.exports = {
   getStatus,
   getAppName,
-  getWebhookUrl
+  getWebhookUrl,
+  getDescription
 };

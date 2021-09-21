@@ -12435,6 +12435,12 @@ const getAppName = () => {
   return appNameInput;
 };
 
+const getDescription = () => {
+  const description = core.getInput("description");
+
+  return description;
+};
+
 const getWebhookUrl = () => {
   const webhookUrl = core.getInput("webhook_url");
 
@@ -12444,7 +12450,8 @@ const getWebhookUrl = () => {
 module.exports = {
   getStatus,
   getAppName,
-  getWebhookUrl
+  getWebhookUrl,
+  getDescription
 };
 
 
@@ -12475,7 +12482,7 @@ const textButton = (text, url) => ({
   }
 });
 
-const getMessageBody = (name, url, status) => {
+const getMessageBody = (name, description, url, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha } = github.context;
   const { number } = github.context.issue;
@@ -12483,7 +12490,6 @@ const getMessageBody = (name, url, status) => {
   const eventPath =
     eventName === "pull_request" ? `/pull/${number}` : `/commit/${sha}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
-  const commitMessage = github.event.head_commit.message;
 
   const body = {
     cards: [
@@ -12511,7 +12517,7 @@ const getMessageBody = (name, url, status) => {
               {
                 keyValue: {
                   topLabel: "Description",
-                  content: commitMessage
+                  content: description
                 }
               }
             ]
@@ -12733,15 +12739,21 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(2186);
-const { getStatus, getAppName, getWebhookUrl } = __nccwpck_require__(6);
+const {
+  getStatus,
+  getAppName,
+  getWebhookUrl,
+  getDescription
+} = __nccwpck_require__(6);
 const { sendMessage } = __nccwpck_require__(5657);
 
 async function main() {
   const status = getStatus();
   const appName = getAppName();
   const webhookUrl = getWebhookUrl();
+  const description = getDescription();
 
-  await sendMessage(appName, webhookUrl, status);
+  await sendMessage(appName, description, webhookUrl, status);
 }
 
 try {
