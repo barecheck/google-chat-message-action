@@ -20,11 +20,33 @@ const textButton = (text, url) => ({
   }
 });
 
+const getDescriptionWidget = (description) => {
+  const exists = description.match("\\(\\#(.*)\\)");
+
+  if (exists !== null) {
+    const number = parseInt(exists[1], 10);
+    const { owner, repo } = github.context.repo;
+    const repoUrl = `https://github.com/${owner}/${repo}`;
+    const pullRequestLink = `${repoUrl}/pull/${number}`;
+    // TODO: clean up description
+
+    return {
+      content: description,
+      button: textButton("OPEN", pullRequestLink)
+    };
+  }
+
+  return {
+    content: description
+  };
+};
+
 const getMessageBody = (name, description, status) => {
   const { owner, repo } = github.context.repo;
   const { eventName, sha } = github.context;
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
+
   const eventPath =
     eventName === "pull_request" ? `/pull/${number}` : `/commit/${sha}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
@@ -55,7 +77,7 @@ const getMessageBody = (name, description, status) => {
               {
                 keyValue: {
                   topLabel: "Description",
-                  content: description
+                  ...getDescriptionWidget(description)
                 }
               }
             ]
