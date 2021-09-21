@@ -12416,7 +12416,7 @@ const parseStatus = (status) => {
   switch (s) {
     case "success":
     case "failure":
-    case "cancelled":
+    case "inProgress":
       return s;
     default:
       throw Error(`Invalid parameter. status=${status}.`);
@@ -12465,13 +12465,13 @@ const axios = __nccwpck_require__(6545);
 
 const statusColorPalette = {
   success: "#2cbe4e",
-  cancelled: "#ffc107",
+  inProgress: "#ffc107",
   failure: "#ff0000"
 };
 
 const statusText = {
   success: "Succeeded",
-  cancelled: "Cancelled",
+  inProgress: "In Progress",
   failure: "Failed"
 };
 
