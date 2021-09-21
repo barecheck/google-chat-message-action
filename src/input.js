@@ -1,8 +1,37 @@
 const core = require("@actions/core");
 
-const getBarecheckGithubAppToken = () =>
-  core.getInput("barecheck-github-app-token");
+const parseStatus = (status) => {
+  const s = status.toLowerCase();
+  switch (s) {
+    case "success":
+    case "failure":
+    case "cancelled":
+      return s;
+    default:
+      throw Error(`Invalid parameter. status=${status}.`);
+  }
+};
+
+const getStatus = () => {
+  const inputStatus = core.getInput("status");
+
+  return parseStatus(inputStatus);
+};
+
+const getAppName = () => {
+  const appNameInput = core.getInput("app_name");
+
+  return appNameInput;
+};
+
+const getWebhookUrl = () => {
+  const webhookUrl = core.getInput("webhook_url");
+
+  return webhookUrl;
+};
 
 module.exports = {
-  getBarecheckGithubAppToken
+  getStatus,
+  getAppName,
+  getWebhookUrl
 };

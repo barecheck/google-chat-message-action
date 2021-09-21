@@ -18,6 +18,10 @@ jobs:
 
       # Testing beta of code coverage checks
       # This part can be removed or optimized once barecheck code coverage will be out of beta
-      # - name: Sends google chat notification message
-      #   id: notification-message
-      #   uses: ./
+      - name: Sends google chat notification message
+        id: notification-message
+        uses: ./
+        with:
+          app_name: barecheck
+          status: success
+          webhook_url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
