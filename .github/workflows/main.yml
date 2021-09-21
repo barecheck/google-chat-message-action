@@ -1,6 +1,6 @@
 name: Code Duplications
 
-on: [pull_request]
+on: [push]
 
 jobs:
   checks:
