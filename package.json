@@ -9,7 +9,7 @@
     "axios": "^0.21.1"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6",
+    "@vercel/ncc": "^0.31.1",
     "chai": "^4.3.4",
     "eslint": "^7.29.0",
     "eslint-config-barecheck-base": "^0.5.0",
