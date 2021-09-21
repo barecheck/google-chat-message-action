@@ -1,5 +1,5 @@
-name: "Google chat notification"
-description: "GitHub Action that sends notification to google chat"
+name: "google-chat-message-action"
+description: "GitHub Action that sends notification about deployment to google chat"
 branding:
   icon: "check-circle"
   color: "green"
