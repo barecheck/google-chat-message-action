@@ -22,13 +22,13 @@ const textButton = (text, url) => ({
 
 const getMessageBody = (name, url, status) => {
   const { owner, repo } = github.context.repo;
-  const { eventName, sha, ref } = github.context;
+  const { eventName, sha } = github.context;
   const { number } = github.context.issue;
   const repoUrl = `https://github.com/${owner}/${repo}`;
   const eventPath =
     eventName === "pull_request" ? `/pull/${number}` : `/commit/${sha}`;
-  const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
+  const commitMessage = github.event.head_commit.message;
 
   const body = {
     cards: [
@@ -55,13 +55,9 @@ const getMessageBody = (name, url, status) => {
               },
               {
                 keyValue: {
-                  topLabel: "event name",
-                  content: eventName,
-                  button: textButton("OPEN EVENT", eventUrl)
+                  topLabel: "Description",
+                  content: commitMessage
                 }
-              },
-              {
-                keyValue: { topLabel: "ref", content: ref }
               }
             ]
           },
