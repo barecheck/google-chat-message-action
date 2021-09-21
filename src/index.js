@@ -1,7 +1,19 @@
 const core = require("@actions/core");
+const {
+  getStatus,
+  getAppName,
+  getWebhookUrl,
+  getDescription
+} = require("./input");
+const { sendMessage } = require("./services/googleChat");
 
 async function main() {
-  // main login executor
+  const status = getStatus();
+  const appName = getAppName();
+  const webhookUrl = getWebhookUrl();
+  const description = getDescription();
+
+  await sendMessage(appName, description, webhookUrl, status);
 }
 
 try {

@@ -7,6 +7,15 @@ inputs:
   app_name:
     description: Your application name
     required: true
+  description:
+    description: Description for notification
+    required: true
+  status:
+    description: Build status
+    required: true
+  webhook_url:
+    description: Google chat webhook URL
+    required: true
 outputs:
   percentage:
     description: "Total Percentage duplication"
