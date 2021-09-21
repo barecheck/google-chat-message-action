@@ -3,13 +3,13 @@ const axios = require("axios");
 
 const statusColorPalette = {
   success: "#2cbe4e",
-  cancelled: "#ffc107",
+  inProgress: "#ffc107",
   failure: "#ff0000"
 };
 
 const statusText = {
   success: "Succeeded",
-  cancelled: "Cancelled",
+  inProgress: "In Progress",
   failure: "Failed"
 };
 

@@ -5,7 +5,7 @@ const parseStatus = (status) => {
   switch (s) {
     case "success":
     case "failure":
-    case "cancelled":
+    case "inProgress":
       return s;
     default:
       throw Error(`Invalid parameter. status=${status}.`);

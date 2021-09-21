@@ -7,6 +7,9 @@ inputs:
   app_name:
     description: Your application name
     required: true
+  description:
+    description: Description for notification
+    required: true
   status:
     description: Build status
     required: true
